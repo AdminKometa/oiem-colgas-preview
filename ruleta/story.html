@@ -201,10 +201,31 @@
   @media (max-width: 420px) {
     .direct-links ul { grid-template-columns: repeat(2, 1fr); }
   }
+
+  .back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    margin: 0 0 14px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: var(--hub);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid rgba(128,128,128,.25);
+  }
+  .back-home:hover,
+  .back-home:focus-visible {
+    outline: 2px solid var(--seg-2);
+  }
 </style>
 </head>
 <body>
 
+<a class="back-home" href="../index.html">&larr; Volver al inicio</a>
 <h1>Ruleta OIEM</h1>
 <p class="subtitle">Gira la ruleta o elige directamente un elemento para ir a su contenido.</p>
 
