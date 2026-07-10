@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruleta OIEM</title>
+<style>
+  :root {
+    --surface: #f5f7fa;
+    --text-primary: #0b1220;
+    --text-secondary: #4a5568;
+    --hub: #ffffff;
+    --seg-1:  #1c5cab; /* E1  blue */
+    --seg-2:  #0097D6; /* E2  cyan */
+    --seg-3:  #ff8300; /* E3  orange */
+    --seg-4:  #e34948; /* E4  red */
+    --seg-5:  #008300; /* E5  green */
+    --seg-6:  #4a3aa7; /* E6  violet */
+    --seg-7:  #eda100; /* E7  yellow */
+    --seg-8:  #1baf7a; /* E8  teal-green */
+    --seg-9:  #eb6834; /* E9  orange2 */
+    --seg-10: #e87ba4; /* E10 magenta */
+    --seg-11: #3987e5; /* E11 blue2 */
+    --seg-12: #0f9aa8; /* E12 teal2 */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #12181f;
+      --text-primary: #f5f7fa;
+      --text-secondary: #b7c0cc;
+      --hub: #1c232c;
+      --seg-1:  #3987e5;
+      --seg-2:  #2599c9;
+      --seg-3:  #c96f1c;
+      --seg-4:  #e66767;
+      --seg-5:  #3fa53f;
+      --seg-6:  #9085e9;
+      --seg-7:  #c98500;
+      --seg-8:  #199e70;
+      --seg-9:  #d95926;
+      --seg-10: #d55181;
+      --seg-11: #5f8fe0;
+      --seg-12: #159aa5;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface: #12181f; --text-primary: #f5f7fa; --text-secondary: #b7c0cc; --hub: #1c232c;
+    --seg-1:#3987e5; --seg-2:#2599c9; --seg-3:#c96f1c; --seg-4:#e66767; --seg-5:#3fa53f; --seg-6:#9085e9;
+    --seg-7:#c98500; --seg-8:#199e70; --seg-9:#d95926; --seg-10:#d55181; --seg-11:#5f8fe0; --seg-12:#159aa5;
+  }
+  :root[data-theme="light"] {
+    --surface: #f5f7fa; --text-primary: #0b1220; --text-secondary: #4a5568; --hub: #ffffff;
+    --seg-1:#1c5cab; --seg-2:#0097D6; --seg-3:#ff8300; --seg-4:#e34948; --seg-5:#008300; --seg-6:#4a3aa7;
+    --seg-7:#eda100; --seg-8:#1baf7a; --seg-9:#eb6834; --seg-10:#e87ba4; --seg-11:#3987e5; --seg-12:#0f9aa8;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--surface);
+    color: var(--text-primary);
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 12px 40px;
+  }
+  h1 {
+    font-size: clamp(20px, 4vw, 28px);
+    text-align: center;
+    margin: 0 0 4px;
+  }
+  p.subtitle {
+    color: var(--text-secondary);
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: clamp(13px, 2.5vw, 15px);
+  }
+
+  .wheel-wrap {
+    position: relative;
+    width: min(92vw, 480px);
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+  }
+  .pointer {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 26px solid var(--text-primary);
+    z-index: 3;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,.35));
+  }
+  #wheel-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform: rotate(0deg);
+    filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
+  }
+  #wheel-svg.spinning {
+    transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+  }
+  .segment {
+    cursor: pointer;
+  }
+  .segment:focus-visible {
+    outline: 3px solid var(--text-primary);
+    outline-offset: -3px;
+  }
+  .segment-label {
+    font-size: 15px;
+    font-weight: 700;
+    fill: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,.45);
+    pointer-events: none;
+    user-select: none;
+  }
+  .hub {
+    fill: var(--hub);
+    stroke: var(--text-primary);
+    stroke-width: 2;
+  }
+
+  .spin-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: none;
+    background: var(--text-primary);
+    color: var(--surface);
+    font-weight: 700;
+    font-size: clamp(12px, 2.2vw, 16px);
+    letter-spacing: .03em;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .spin-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+  }
+  .spin-btn:focus-visible {
+    outline: 3px solid var(--seg-2);
+    outline-offset: 3px;
+  }
+
+  #result {
+    margin-top: 22px;
+    min-height: 1.4em;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  #result a {
+    color: var(--seg-2);
+  }
+
+  .direct-links {
+    margin-top: 28px;
+    width: min(92vw, 640px);
+  }
+  .direct-links summary {
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+  .direct-links ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+    padding: 14px 0 0;
+    margin: 0;
+  }
+  .direct-links a {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--hub);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(128,128,128,.25);
+  }
+  .direct-links a:hover,
+  .direct-links a:focus-visible {
+    outline: 2px solid var(--seg-2);
+  }
+
+  @media (max-width: 420px) {
+    .direct-links ul { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<h1>Ruleta OIEM</h1>
+<p class="subtitle">Gira la ruleta o elige directamente un elemento para ir a su contenido.</p>
+
+<div class="wheel-wrap">
+  <div class="pointer" aria-hidden="true"></div>
+  <svg id="wheel-svg" viewBox="0 0 400 400" role="img" aria-label="Ruleta con los 12 elementos OIEM">
+    <g id="segments-group"></g>
+    <circle class="hub" cx="200" cy="200" r="46"></circle>
+  </svg>
+  <button id="spin-btn" class="spin-btn" type="button">GIRAR</button>
+</div>
+
+<p id="result" role="status" aria-live="polite"></p>
+
+<details class="direct-links">
+  <summary>O elige directamente un elemento</summary>
+  <ul id="direct-links-list"></ul>
+</details>
+
+<script>
+(function () {
+  'use strict';
+
+  // Un solo lugar para editar los segmentos: id, texto corto, texto largo, color (variable CSS) y destino.
+  var SEGMENTS = [
+    { id: 1,  short: 'E1',  label: 'Liderazgo, Compromiso y Responsabilidad', color: 'var(--seg-1)',  url: '../elemento1.html' },
+    { id: 2,  short: 'E2',  label: 'Evaluación y Gestión de Riesgo', color: 'var(--seg-2)',  url: '../elemento2.html' },
+    { id: 3,  short: 'E3',  label: 'Diseño y Construcción de Instalaciones', color: 'var(--seg-3)',  url: '../elemento3.html' },
+    { id: 4,  short: 'E4',  label: 'Información y Documentación', color: 'var(--seg-4)',  url: '../elemento4.html' },
+    { id: 5,  short: 'E5',  label: 'Competencia y Capacitación del Personal', color: 'var(--seg-5)',  url: '../elemento5.html' },
+    { id: 6,  short: 'E6',  label: 'Operaciones', color: 'var(--seg-6)',  url: '../elemento6.html' },
+    { id: 7,  short: 'E7',  label: 'Integridad Mecánica y Confiabilidad', color: 'var(--seg-7)',  url: '../elemento7.html' },
+    { id: 8,  short: 'E8',  label: 'Gestión del Cambio', color: 'var(--seg-8)',  url: '../elemento8.html' },
+    { id: 9,  short: 'E9',  label: 'Servicio de Terceros', color: 'var(--seg-9)',  url: '../elemento9.html' },
+    { id: 10, short: 'E10', label: 'Investigación y Análisis de Incidentes y Accidentes', color: 'var(--seg-10)', url: '../elemento10.html' },
+    { id: 11, short: 'E11', label: 'Preparación para Emergencias y Relación con la Comunidad', color: 'var(--seg-11)', url: '../elemento11.html' },
+    { id: 12, short: 'E12', label: 'Evaluación y Mejora de la Integridad de las Operaciones', color: 'var(--seg-12)', url: '../elemento12.html' }
+  ];
+
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+  var CX = 200, CY = 200, R = 196;
+  var N = SEGMENTS.length;
+  var SLICE = 360 / N;
+
+  var wheelSvg = document.getElementById('wheel-svg');
+  var group = document.getElementById('segments-group');
+  var spinBtn = document.getElementById('spin-btn');
+  var resultEl = document.getElementById('result');
+  var linksList = document.getElementById('direct-links-list');
+
+  function polar(cx, cy, r, angleDeg) {
+    var a = (angleDeg - 90) * Math.PI / 180;
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+  }
+
+  function buildWheel() {
+    SEGMENTS.forEach(function (seg, i) {
+      var startAngle = i * SLICE;
+      var endAngle = startAngle + SLICE;
+      var p1 = polar(CX, CY, R, startAngle);
+      var p2 = polar(CX, CY, R, endAngle);
+      var largeArc = SLICE > 180 ? 1 : 0;
+
+      var path = document.createElementNS(SVG_NS, 'path');
+      var d = [
+        'M', CX, CY,
+        'L', p1.x.toFixed(2), p1.y.toFixed(2),
+        'A', R, R, 0, largeArc, 1, p2.x.toFixed(2), p2.y.toFixed(2),
+        'Z'
+      ].join(' ');
+      path.setAttribute('d', d);
+      path.setAttribute('fill', seg.color);
+      path.setAttribute('class', 'segment');
+      path.setAttribute('role', 'button');
+      path.setAttribute('tabindex', '0');
+      path.setAttribute('aria-label', seg.short + ': ' + seg.label);
+      path.addEventListener('click', function () { goTo(seg); });
+      path.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(seg); }
+      });
+      group.appendChild(path);
+
+      var mid = startAngle + SLICE / 2;
+      var labelPos = polar(CX, CY, R * 0.62, mid);
+      var text = document.createElementNS(SVG_NS, 'text');
+      text.setAttribute('x', labelPos.x.toFixed(2));
+      text.setAttribute('y', labelPos.y.toFixed(2));
+      text.setAttribute('class', 'segment-label');
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('dominant-baseline', 'middle');
+      text.setAttribute('transform', 'rotate(' + mid.toFixed(2) + ' ' + labelPos.x.toFixed(2) + ' ' + labelPos.y.toFixed(2) + ')');
+      text.textContent = seg.short;
+      group.appendChild(text);
+    });
+  }
+
+  function buildDirectLinks() {
+    SEGMENTS.forEach(function (seg) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = seg.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = seg.short + ' — ' + seg.label;
+      li.appendChild(a);
+      linksList.appendChild(li);
+    });
+  }
+
+  function goTo(seg) {
+    resultEl.textContent = 'Abriendo ' + seg.short + ': ' + seg.label + '…';
+    window.open(seg.url, '_blank', 'noopener');
+  }
+
+  var spinning = false;
+  var currentRotation = 0;
+
+  function spin() {
+    if (spinning) return;
+    spinning = true;
+    spinBtn.disabled = true;
+    resultEl.textContent = 'Girando…';
+
+    var winnerIndex = Math.floor(Math.random() * N);
+    var winnerMid = winnerIndex * SLICE + SLICE / 2;
+
+    // Vueltas completas + ajuste para que el segmento ganador quede bajo el puntero (arriba, 0deg).
+    var extraTurns = 5 + Math.floor(Math.random() * 3); // 5-7 vueltas
+    var targetRotation = extraTurns * 360 + (360 - winnerMid);
+    // Nunca gira "hacia atrás" respecto a la posición actual.
+    var normalizedCurrent = currentRotation % 360;
+    var delta = targetRotation - normalizedCurrent;
+    var finalRotation = currentRotation + delta + (delta < 0 ? 360 : 0);
+
+    wheelSvg.classList.add('spinning');
+    wheelSvg.style.transform = 'rotate(' + finalRotation + 'deg)';
+    currentRotation = finalRotation;
+
+    window.setTimeout(function () {
+      spinning = false;
+      spinBtn.disabled = false;
+      var seg = SEGMENTS[winnerIndex];
+      resultEl.innerHTML = 'Resultado: <strong>' + seg.short + '</strong> — ' + seg.label +
+        '. <a href="' + seg.url + '" target="_blank" rel="noopener">Abrir</a>';
+    }, 5200);
+  }
+
+  buildWheel();
+  buildDirectLinks();
+  spinBtn.addEventListener('click', spin);
+})();
+</script>
+
+</body>
+</html>
