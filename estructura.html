@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;1,100&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300&family=Roboto:ital,wght@0,100;0,400;0,700;1,100&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/normalice.css">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=9">
   <link rel="shortcut icon" href="img/ico.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -128,37 +128,249 @@
             <p>Gobernanza OIEM</p>
           </div>
         </div>
-        <div class="gob-grid">
-          <div class="gob-card">
-            <p><b>Sponsor</b>Contenido pendiente de Colgas (nombre, foto, cargo)</p>
+        <img class="gob-logo" src="img/logo_oiem_gobernanza.png" alt="OIEM — Vive la seguridad">
+
+        <p class="gob-map-hint">Haz clic en un elemento del mapa para ver su gobernanza (Sponsor, Champions y Focal Point).</p>
+        <div class="gob-flow">
+          <button type="button" class="gob-flow-side" data-target="1" style="--c:#1c5cab">
+            <span class="gob-flow-circle">E1</span>
+            <p>Elemento 1<br>Liderazgo, Compromiso y Responsabilidad</p>
+            <small>LINEAMIENTOS Y DIRECTRICES DE SEGURIDAD</small>
+          </button>
+
+          <div class="gob-flow-mid">
+            <div class="gob-flow-row">
+              <button type="button" class="gob-flow-node" data-target="2" style="--c:#0097D6"><span class="gob-flow-circle">E2</span><p>Elemento 2<br>Evaluación y Gestión de Riesgo</p></button>
+              <button type="button" class="gob-flow-node" data-target="3" style="--c:#ff8300"><span class="gob-flow-circle">E3</span><p>Elemento 3<br>Diseño y Construcción de Instalaciones</p></button>
+              <button type="button" class="gob-flow-node" data-target="4" style="--c:#e34948"><span class="gob-flow-circle">E4</span><p>Elemento 4<br>Información y Documentación</p></button>
+            </div>
+            <div class="gob-flow-row">
+              <button type="button" class="gob-flow-node" data-target="5" style="--c:#008300"><span class="gob-flow-circle">E5</span><p>Elemento 5<br>Competencia y Capacitación del Personal</p></button>
+              <button type="button" class="gob-flow-node" data-target="6" style="--c:#4a3aa7"><span class="gob-flow-circle">E6</span><p>Elemento 6<br>Operaciones</p></button>
+              <button type="button" class="gob-flow-node" data-target="7" style="--c:#eda100"><span class="gob-flow-circle">E7</span><p>Elemento 7<br>Integridad Mecánica y Confiabilidad</p></button>
+              <button type="button" class="gob-flow-node" data-target="8" style="--c:#1baf7a"><span class="gob-flow-circle">E8</span><p>Elemento 8<br>Gestión del Cambio</p></button>
+            </div>
+            <div class="gob-flow-row">
+              <button type="button" class="gob-flow-node" data-target="9" style="--c:#eb6834"><span class="gob-flow-circle">E9</span><p>Elemento 9<br>Servicio de Terceros</p></button>
+              <button type="button" class="gob-flow-node" data-target="10" style="--c:#e87ba4"><span class="gob-flow-circle">E10</span><p>Elemento 10<br>Investigación y Análisis de Incidentes y Accidentes</p></button>
+              <button type="button" class="gob-flow-node" data-target="11" style="--c:#3987e5"><span class="gob-flow-circle">E11</span><p>Elemento 11<br>Preparación para Emergencias y Relación con la Comunidad</p></button>
+            </div>
           </div>
-          <div class="gob-card">
-            <p><b>Champions</b>Contenido pendiente de Colgas (nombres, fotos, cargos)</p>
-          </div>
-          <div class="gob-card">
-            <p><b>Focal Point</b>Contenido pendiente de Colgas (nombre, foto, cargo)</p>
-          </div>
+
+          <button type="button" class="gob-flow-side" data-target="12" style="--c:#0f9aa8">
+            <span class="gob-flow-circle">E12</span>
+            <p>Elemento 12<br>Evaluación y Mejora de la Integridad de las Operaciones</p>
+            <small>EVALUACIÓN</small>
+            <span class="gob-flow-loop">&#8635; Vuelve a Elemento 1</span>
+          </button>
         </div>
 
-        <div class="fila">
-          <div class="title">
-            <p>Modelo OIEM / Operaciones</p>
-          </div>
-        </div>
-        <div class="fila-element mapa">
-          <!-- <img src="img/mapa.png"  alt=""> -->
-          <picture>
-            <source media="(max-width: 767px)" srcset="img/mapa_2.png">
-            <source media="(max-width: 991px)" srcset="img/mapa_3.png">
-            <img class="" src="img/mapa.png" width="1121" height="">
-          </picture>
+        <div class="gob-accordion">
+          <details class="gob-item" id="gob-e1" style="border-left-color:#1c5cab">
+            <summary>Elemento 1 — Liderazgo, Compromiso y Responsabilidad</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-01.jpg" alt="Organigrama Elemento 1: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Didier Builes — Gerente General</span></div>
+              <div class="gob-role"><b>Champions</b><span>Natalya Granada — Directora HSEQ</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad Vial</b><span>Diana Osuna — Jefe Nacional Vial</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad de Procesos</b><span>Valeria Lugo — Coordinador Seguridad de Procesos</span><span>Camilo Vesga — Coordinador Seguridad de Procesos</span></div>
+              <div class="gob-role"><b>Focal Point — HSEQ</b><span>Viviana Daconte — Jefe Regional HSEQ</span><span>Evelcy Hernandez — Jefe Regional HSEQ</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
 
+          <details class="gob-item" id="gob-e2" style="border-left-color:#0097D6">
+            <summary>Elemento 2 — Evaluación del Riesgo y Gestión del Riesgo</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-02.jpg" alt="Organigrama Elemento 2: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Antonio Ayala — Gerente General</span></div>
+              <div class="gob-role"><b>Champions</b><span>Mario Díaz — Jefe Nacional Seguridad de Procesos y Emergencia</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad Vial</b><span>Diana Osuna — Jefe Nacional Vial</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad de Procesos</b><span>Valeria Lugo — Coordinador Seguridad de Procesos</span><span>Camilo Vesga — Coordinador Seguridad de Procesos</span></div>
+              <div class="gob-role"><b>Focal Point — HSEQ</b><span>Viviana Daconte — Jefe Regional HSEQ</span><span>Evelcy Hernandez — Jefe Regional HSEQ</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e3" style="border-left-color:#ff8300">
+            <summary>Elemento 3 — Diseño y Construcción de Instalaciones</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-03.jpg" alt="Organigrama Elemento 3: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Marco Vélez — Gerente Operaciones</span></div>
+              <div class="gob-role"><b>Champions</b><span>Mario Muñetón — Jefe PMO</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad Vial</b><span>Cesar Bayona — Jefe de Transporte</span></div>
+              <div class="gob-role"><b>Focal Point — PMO</b><span>Keren Aguilar — Coordinador de PMO</span><span>Javier Uribe — Coordinador de PMO</span><span>Edwar Celis — Coordinador de PMO</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e4" style="border-left-color:#e34948">
+            <summary>Elemento 4 — Información / Documentación</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-04.jpg" alt="Organigrama Elemento 4: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Luis Ocampo — Gerente Legal</span></div>
+              <div class="gob-role"><b>Champions</b><span>Viviana Daconte — Jefe Regional HSEQ Sur</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad Vial</b><span>Diana Osuna — Jefe Nacional Vial</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad de Procesos</b><span>Valeria Lugo — Coordinador Seguridad de Procesos</span><span>Camilo Vesga — Coordinador Seguridad de Procesos</span></div>
+              <div class="gob-role"><b>Focal Point — HSEQ</b><span>Evelcy Hernandez — Jefe Regional HSEQ</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e5" style="border-left-color:#008300">
+            <summary>Elemento 5 — Competencia y Capacitación del Personal</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-05.jpg" alt="Organigrama Elemento 5: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Andres Ruiz — Gerente Personas</span></div>
+              <div class="gob-role"><b>Champions</b><span>Diana Ferreira — Directora de Desarrollo y Formación</span></div>
+              <div class="gob-role"><b>Focal Point — Desarrollo Organizacional</b><span>Shaden Paez — Coordinador de competencias</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e6" style="border-left-color:#4a3aa7">
+            <summary>Elemento 6 — Operaciones</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-06.jpg" alt="Organigrama Elemento 6: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Marco Vélez — Gerente Operaciones</span></div>
+              <div class="gob-role"><b>Champions</b><span>Juan Ardila — Jefe de Operaciones</span><span>Karen Borja — Jefe de Operaciones</span></div>
+              <div class="gob-role"><b>Focal Point</b><span>Jose Uribe — Ingeniero de Planta</span><span>Anderson Rodríguez — Ingeniero de Planta</span><span>Cindy Galeano — Ingeniero de Planta</span><span>Edison Bernal — Ingeniero de Planta</span><span>Eliana Ortega — Ingeniero de Planta</span><span>Nathalia Marin — Ingeniero de Planta</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e7" style="border-left-color:#eda100">
+            <summary>Elemento 7 — Integridad Mecánica y Confiabilidad</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-07.jpg" alt="Organigrama Elemento 7: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Marco Vélez — Gerente Operaciones</span></div>
+              <div class="gob-role"><b>Champions</b><span>Luis Osvaldo — Jefe Nacional de Mantenimiento</span></div>
+              <div class="gob-role"><b>Focal Point</b><span>Alvin Mesa — Ingeniero de Mantenimiento de Planta</span><span>Cynthia Vega — Coordinadora de Metrología</span><span>Javier Uribe — Ingeniero de Mantenimiento de Planta</span><span>Lina Santander — Coordinadora de Confiabilidad</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e8" style="border-left-color:#1baf7a">
+            <summary>Elemento 8 — Gestión del Cambio</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-08.jpg" alt="Organigrama Elemento 8: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Marco Vélez — Gerente Operaciones</span></div>
+              <div class="gob-role"><b>Champions</b><span>Mario Andrés Díaz — Jefe Nacional de Seguridad de Procesos y Emergencia</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad Vial</b><span>Diana Osuna — Jefe Nacional Vial</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad de Procesos</b><span>Valeria Lugo — Coordinador Seguridad de Procesos</span><span>Camilo Vesga — Coordinador Seguridad de Procesos</span></div>
+              <div class="gob-role"><b>Focal Point — HSEQ</b><span>Deidri Malpica — Coordinador HSEQ</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e9" style="border-left-color:#eb6834">
+            <summary>Elemento 9 — Servicio de Terceros</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-09.jpg" alt="Organigrama Elemento 9: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Andres Cadavid — Gerente Administración y Finanzas</span></div>
+              <div class="gob-role"><b>Champions</b><span>Graciela Hernández — Directora de Adquisiciones</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad Vial</b><span>Diana Osuna — Jefe Nacional Vial</span></div>
+              <div class="gob-role"><b>Focal Point — Adquisiciones</b><span>Willmer Chirivi — Coordinador de Adquisiciones Operacionales</span></div>
+              <div class="gob-role"><b>Focal Point — HSEQ</b><span>Wilmer Camacho — Analista HSEQ</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e10" style="border-left-color:#e87ba4">
+            <summary>Elemento 10 — Investigación y Análisis de Incidentes y Accidentes</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-10.jpg" alt="Organigrama Elemento 10: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Antonio Ayala — Gerente General</span></div>
+              <div class="gob-role"><b>Champions</b><span>Mario Díaz — Jefe Nacional Seguridad de Procesos y Emergencia</span><span>Natalya Granada — Directora HSEQ</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad Vial</b><span>Diana Osuna — Jefe Nacional Vial</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad de Procesos</b><span>Valeria Lugo — Coordinador Seguridad de Procesos</span><span>Camilo Vesga — Coordinador Seguridad de Procesos</span></div>
+              <div class="gob-role"><b>Focal Point — HSEQ</b><span>Viviana Daconte — Jefe Regional HSEQ</span><span>Evelcy Hernandez — Jefe Regional HSEQ</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e11" style="border-left-color:#3987e5">
+            <summary>Elemento 11 — Preparación para Emergencias y Relación con la Comunidad</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-11.jpg" alt="Organigrama Elemento 11: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Antonio Ayala — Gerente General</span></div>
+              <div class="gob-role"><b>Champions</b><span>Mario Díaz — Jefe Nacional Seguridad de Procesos y Emergencia</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad de Procesos</b><span>Valeria Lugo — Coordinador Seguridad de Procesos</span><span>Camilo Vesga — Coordinador Seguridad de Procesos</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
+
+          <details class="gob-item" id="gob-e12" style="border-left-color:#0f9aa8">
+            <summary>Elemento 12 — Evaluación y Mejora de la Integridad de las Operaciones</summary>
+            <div class="gob-body">
+              <img class="gob-photo" src="img/gobernanza/elemento-12.jpg" alt="Organigrama Elemento 12: Sponsor, Champions y Focal Point">
+              <div class="gob-role"><b>Sponsor</b><span>Aricelis Martinez — Gerente Innovación</span></div>
+              <div class="gob-role"><b>Champions</b><span>Mario Díaz — Jefe Nacional Seguridad de Procesos y Emergencia</span><span>Natalya Granada — Directora HSEQ</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad Vial</b><span>Diana Osuna — Jefe Nacional Vial</span></div>
+              <div class="gob-role"><b>Focal Point — Seguridad de Procesos</b><span>Valeria Lugo — Coordinador Seguridad de Procesos</span><span>Camilo Vesga — Coordinador Seguridad de Procesos</span></div>
+              <div class="gob-role"><b>Focal Point — HSEQ</b><span>Viviana Daconte — Jefe Regional HSEQ</span><span>Evelcy Hernandez — Jefe Regional HSEQ</span></div>
+            <button type="button" class="gob-back-btn">&larr; Volver al esquema</button>
+              
+            </div>
+          </details>
         </div>
+
       </div>
     </div>
 
 
   </main>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var items = document.querySelectorAll('.gob-item');
+
+    items.forEach(function (item) {
+      item.addEventListener('toggle', function () {
+        if (item.open) {
+          items.forEach(function (other) {
+            if (other !== item) other.open = false;
+          });
+        }
+      });
+    });
+
+    function openElement(n) {
+      var details = document.getElementById('gob-e' + n);
+      if (!details) return;
+      details.open = true;
+      details.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.querySelectorAll('.gob-flow-node, .gob-flow-side').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openElement(btn.getAttribute('data-target'));
+      });
+    });
+
+    document.querySelectorAll('.gob-back-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var details = btn.closest('details');
+        if (details) details.open = false;
+        var map = document.querySelector('.gob-flow');
+        if (map) map.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  })();
+  </script>
 
   <footer>
     <div class="caja-footer">

@@ -58,13 +58,21 @@
   body {
     margin: 0;
     min-height: 100%;
-    background: var(--surface);
+    background: #2980B9;
+    background: linear-gradient(180deg, #fff, #e3f3f9, #dcf2fb) 100%;
+    background-size: cover;
     color: var(--text-primary);
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 24px 12px 40px;
+  }
+  .brand-logo {
+    display: block;
+    max-width: 220px;
+    width: 60vw;
+    margin: 0 auto 12px;
   }
   h1 {
     font-size: clamp(20px, 4vw, 28px);
@@ -111,8 +119,9 @@
     cursor: pointer;
   }
   .segment:focus-visible {
-    outline: 3px solid var(--text-primary);
-    outline-offset: -3px;
+    stroke: var(--text-primary);
+    stroke-width: 4;
+    stroke-linejoin: round;
   }
   .segment-label {
     font-size: 15px;
@@ -221,11 +230,28 @@
   .back-home:focus-visible {
     outline: 2px solid var(--seg-2);
   }
+
+  .site-footer {
+    margin-top: 36px;
+    width: min(92vw, 640px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(128,128,128,.25);
+  }
+  .site-footer img {
+    max-width: 160px;
+    height: auto;
+  }
 </style>
 </head>
 <body>
 
 <a class="back-home" href="../index.html">&larr; Volver al inicio</a>
+<img class="brand-logo" src="../img/oiem_2.png" alt="OIEM — Model of Excellence and Operational Integrity">
 <h1>Ruleta OIEM</h1>
 <p class="subtitle">Gira la ruleta o elige directamente un elemento para ir a su contenido.</p>
 
@@ -244,6 +270,11 @@
   <summary>O elige directamente un elemento</summary>
   <ul id="direct-links-list"></ul>
 </details>
+
+<footer class="site-footer">
+  <img src="../img/logo_u.png" alt="Corporativa — Formación que transforma">
+  <img src="../img/logos.png" alt="Colgas, Cinsa, CoTranscol">
+</footer>
 
 <script>
 (function () {
@@ -368,8 +399,10 @@
       spinning = false;
       spinBtn.disabled = false;
       var seg = SEGMENTS[winnerIndex];
-      resultEl.innerHTML = 'Resultado: <strong>' + seg.short + '</strong> — ' + seg.label +
-        '. <a href="' + seg.url + '" target="_blank" rel="noopener">Abrir</a>';
+      resultEl.innerHTML = 'Resultado: <strong>' + seg.short + '</strong> — ' + seg.label + '. Llevándote a su contenido…';
+      window.setTimeout(function () {
+        window.location.href = seg.url;
+      }, 900);
     }, 5200);
   }
 
