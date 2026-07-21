@@ -111,10 +111,17 @@ input.cja {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
 }
 
 .cabecera .caja-img img {
   ///filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.cabecera .caja-img .logo-seguridad {
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  padding-left: 18px;
 }
 
 .hamb {
@@ -912,6 +919,11 @@ footer .caja-logos2 img {
     width: 180px;
   }
 
+  .cabecera .caja-img .logo-seguridad {
+    width: 90px;
+    padding-left: 10px;
+  }
+
   .cabecera .home {
     height: 60px;
     width: 60px;
@@ -1455,31 +1467,25 @@ footer .caja-logos2 img {
   padding: 6px;
 }
 
-.gob-flow-circle {
+.gob-flow-icon {
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background: var(--c);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Oswald", sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
+  display: block;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, .2));
   transition: transform .2s ease;
 }
 
-.gob-flow-node:hover .gob-flow-circle,
-.gob-flow-side:hover .gob-flow-circle {
+.gob-flow-node:hover .gob-flow-icon,
+.gob-flow-side:hover .gob-flow-icon {
   transform: scale(1.08);
 }
 
-.gob-flow-node:focus-visible .gob-flow-circle,
-.gob-flow-side:focus-visible .gob-flow-circle {
+.gob-flow-node:focus-visible .gob-flow-icon,
+.gob-flow-side:focus-visible .gob-flow-icon {
   outline: 3px solid #002657;
   outline-offset: 2px;
+  border-radius: 50%;
 }
 
 .gob-flow-node p,

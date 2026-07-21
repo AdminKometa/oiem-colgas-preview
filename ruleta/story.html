@@ -10,18 +10,18 @@
     --text-primary: #0b1220;
     --text-secondary: #4a5568;
     --hub: #ffffff;
-    --seg-1:  #1c5cab; /* E1  blue */
-    --seg-2:  #0097D6; /* E2  cyan */
-    --seg-3:  #ff8300; /* E3  orange */
-    --seg-4:  #e34948; /* E4  red */
-    --seg-5:  #008300; /* E5  green */
-    --seg-6:  #4a3aa7; /* E6  violet */
-    --seg-7:  #eda100; /* E7  yellow */
-    --seg-8:  #1baf7a; /* E8  teal-green */
-    --seg-9:  #eb6834; /* E9  orange2 */
-    --seg-10: #e87ba4; /* E10 magenta */
-    --seg-11: #3987e5; /* E11 blue2 */
-    --seg-12: #0f9aa8; /* E12 teal2 */
+    --seg-1:  #6CAE39; /* E1  Liderazgo */
+    --seg-2:  #EE7C1F; /* E2  Gestión de Riesgo */
+    --seg-3:  #0C86C1; /* E3  Diseño */
+    --seg-4:  #FF603D; /* E4  Documentación */
+    --seg-5:  #635D5D; /* E5  Capacitación */
+    --seg-6:  #0A86C1; /* E6  Operaciones */
+    --seg-7:  #4C8142; /* E7  Integridad mecánica */
+    --seg-8:  #CF9C10; /* E8  Gestión del cambio */
+    --seg-9:  #CA6299; /* E9  Terceros */
+    --seg-10: #FF623F; /* E10 Incidentes y accidentes */
+    --seg-11: #6DAF3A; /* E11 Emergencias y comunidad */
+    --seg-12: #EE7C1F; /* E12 Evaluación y mejora */
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -29,29 +29,13 @@
       --text-primary: #f5f7fa;
       --text-secondary: #b7c0cc;
       --hub: #1c232c;
-      --seg-1:  #3987e5;
-      --seg-2:  #2599c9;
-      --seg-3:  #c96f1c;
-      --seg-4:  #e66767;
-      --seg-5:  #3fa53f;
-      --seg-6:  #9085e9;
-      --seg-7:  #c98500;
-      --seg-8:  #199e70;
-      --seg-9:  #d95926;
-      --seg-10: #d55181;
-      --seg-11: #5f8fe0;
-      --seg-12: #159aa5;
     }
   }
   :root[data-theme="dark"] {
     --surface: #12181f; --text-primary: #f5f7fa; --text-secondary: #b7c0cc; --hub: #1c232c;
-    --seg-1:#3987e5; --seg-2:#2599c9; --seg-3:#c96f1c; --seg-4:#e66767; --seg-5:#3fa53f; --seg-6:#9085e9;
-    --seg-7:#c98500; --seg-8:#199e70; --seg-9:#d95926; --seg-10:#d55181; --seg-11:#5f8fe0; --seg-12:#159aa5;
   }
   :root[data-theme="light"] {
     --surface: #f5f7fa; --text-primary: #0b1220; --text-secondary: #4a5568; --hub: #ffffff;
-    --seg-1:#1c5cab; --seg-2:#0097D6; --seg-3:#ff8300; --seg-4:#e34948; --seg-5:#008300; --seg-6:#4a3aa7;
-    --seg-7:#eda100; --seg-8:#1baf7a; --seg-9:#eb6834; --seg-10:#e87ba4; --seg-11:#3987e5; --seg-12:#0f9aa8;
   }
 
   * { box-sizing: border-box; }
@@ -88,11 +72,27 @@
   @media (max-width: 768px) {
     .worker-portrait { display: none; }
   }
+  .brand-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 0 0 12px;
+  }
   .brand-logo {
     display: block;
     max-width: 220px;
     width: 60vw;
-    margin: 0 auto 12px;
+    margin: 0;
+  }
+  .brand-logo-secundario {
+    display: block;
+    max-width: 130px;
+    width: 32vw;
+    margin: 0;
+    padding-left: 16px;
+    border-left: 1px solid rgba(255,255,255,.3);
   }
   h1 {
     font-size: clamp(20px, 4vw, 28px);
@@ -281,7 +281,10 @@
 
 <img class="worker-portrait" src="../img/ruleta/inspector.png" alt="">
 <a class="back-home" href="../index.html">&larr; Volver al inicio</a>
-<img class="brand-logo" src="../img/oiem_2.png" alt="OIEM — Model of Excellence and Operational Integrity">
+<div class="brand-header">
+  <img class="brand-logo" src="../img/oiem_2.png" alt="OIEM — Model of Excellence and Operational Integrity">
+  <img class="brand-logo-secundario" src="../img/logo_seguridad_nos_une.png" alt="La seguridad nos une">
+</div>
 <h1>Ruleta OIEM</h1>
 <p class="subtitle">Gira la ruleta o elige directamente un elemento para ir a su contenido.</p>
 
