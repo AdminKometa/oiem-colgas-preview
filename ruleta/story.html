@@ -78,7 +78,11 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 16px;
-    margin: 0 0 12px;
+    margin: 0 0 16px;
+    background: #fff;
+    padding: 14px 28px;
+    border-radius: 16px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,.15));
   }
   .brand-logo {
     display: block;
@@ -92,7 +96,13 @@
     width: 32vw;
     margin: 0;
     padding-left: 16px;
-    border-left: 1px solid rgba(255,255,255,.3);
+    border-left: 1px solid rgba(0,0,0,.12);
+  }
+  @media (max-width: 480px) {
+    .brand-header {
+      padding: 10px 16px;
+      gap: 10px;
+    }
   }
   h1 {
     font-size: clamp(20px, 4vw, 28px);
