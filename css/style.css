@@ -1555,3 +1555,9 @@ footer .caja-logos2 img {
     padding: 4px 14px 14px;
   }
 }
+
+/* Override del tamaño de la burbuja del widget "Aprende Con Sofi" (loader.js la fija en 234px, sin data-attribute para configurarlo) */
+.apch-btn {
+  width: 90px !important;
+  height: 90px !important;
+}
